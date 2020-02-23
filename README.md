@@ -1,6 +1,7 @@
 # 20200222_phonetic_pronunciation_v1
  a simple app that returns the wav for a words pronusation using IPA (International Phonetic Alphabet)
 
+![](/screehshot_v1.jpg?raw=true "Optional Title")
 how to build the local npm repo
 > npm run compile
 
@@ -18,3 +19,4 @@ RUN WITH DOCKER
 
 for runing on raspberry pi
 >docker run -p 8080:3000 -d  wisehackermonkey/ipa-translator-v1-arm
+
