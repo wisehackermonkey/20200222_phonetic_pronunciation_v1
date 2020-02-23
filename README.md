@@ -1,6 +1,7 @@
 # 20200222_phonetic_pronunciation_v1
  a simple app that returns the wav for a words pronusation using IPA (International Phonetic Alphabet)
-![](screenshot_v1.png)
+
+![](/screehshot_v1.jpg?raw=true "Optional Title")
 how to build the local npm repo
 > npm run compile
 
