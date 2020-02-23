@@ -11,3 +11,7 @@ run forground (testing)
 > docker run -i -p 8080:3000 -d ipa-translator-v1:latest
 run background
 > docker run -p 8080:3000 -d ipa-translator-v1:latest
+
+
+RUN WITH DOCKER
+>docker run -p 8080:3000 -d  wisehackermonkey/ipa-translator-v1
