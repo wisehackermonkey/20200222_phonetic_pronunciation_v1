@@ -15,41 +15,50 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //https://www.npmjs.com/package/text-to-ipa
 var app = (0, _express2.default)();
 var PORT = 3000;
+var API_VERSION = "v1";
 console.log("Server Started: " + PORT);
 
 _textToIpa2.default.loadDict();
 
+app.get("/", function (req, res) {
+    res.send("Please visit /v1/word/<enter word here> or /v1/words/<enter sentences here>");
+});
+
 //main endpoint for server
 app.get('/v1/word/:word', function (req, res) {
-
+    var responce_json = {
+        "sentence_ipa": "",
+        "ipa_words": [],
+        "sentence": "",
+        "error": "",
+        "version": API_VERSION
+    };
     if (req.params.word) {
         var word = req.params.word;
         var ipa_translation = _textToIpa2.default.lookup(word);
 
         console.log(ipa_translation);
-        var responce_json = {
-            "word": word,
-            "error": ipa_translation.error == "undefined" ? "Word Not found" : "None",
-            "ipa_translation": ipa_translation.text,
-            "version": "v1"
-        };
+        responce_json.word = word;
+        responce_json.error = ipa_translation.error == "undefined" ? "Word Not found" : "None";
+        responce_json.ipa_words = ipa_translation.text;
         res.send(responce_json);
     } else {
         console.log("ERROR: word not found");
         var error_responce = req.params;
-        error_responce["error"] = "ERROR: word not found";
+        error_responce["error"] = "ERROR: word not  found";
         res.send(error_responce);
     }
 });
 
 // words enpoint
-app.get("/v1/senence/:words", function (req, res) {
+app.get("/v1/words/:words", function (req, res) {
     var isSentence = req.params.words;
     var responce_json = {
-        "error": "",
-        "sentence": "",
         "sentence_ipa": "",
-        "ipa_words": []
+        "ipa_words": [],
+        "sentence": "",
+        "error": "",
+        "version": API_VERSION
     };
 
     if (isSentence) {
@@ -83,6 +92,7 @@ app.get("/v1/senence/:words", function (req, res) {
 
         res.send(JSON.stringify(responce_json));
     } else {
+        responce_json.error = "sentence not found";
         res.send(JSON.stringify(responce_json));
     }
 });

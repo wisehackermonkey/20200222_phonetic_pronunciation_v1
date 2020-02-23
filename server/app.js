@@ -5,30 +5,38 @@ import { cleanup } from './lib/helpers'
 
 const app = express()
 const PORT = 3000
+const API_VERSION = "v1"
 console.log("Server Started: " + PORT)
 
 TextToIPA.loadDict();
 
+app.get("/",(req,res)=>{
+    res.send("Please visit /v1/word/<enter word here> or /v1/words/<enter sentences here>")
+})
+
 //main endpoint for server
 app.get('/v1/word/:word', function (req, res) {
-
+    let responce_json = {
+        "sentence_ipa":"",
+        "ipa_words":[],
+        "sentence":"",
+        "error":""   ,
+        "version": API_VERSION
+    }
     if(req.params.word){
         let word = req.params.word
         let ipa_translation = TextToIPA.lookup(word)
 
         console.log(ipa_translation)
-        let responce_json = {
-                 "word": word,
-                "error": ipa_translation.error == "undefined" ? "Word Not found":"None",
-                "ipa_translation": ipa_translation.text,
-                "version": "v1"
-        }
+        responce_json.word = word
+        responce_json.error = ipa_translation.error == "undefined" ? "Word Not found":"None"
+        responce_json.ipa_words = ipa_translation.text
         res.send(responce_json)
 
     }else{
         console.log("ERROR: word not found")
         let error_responce = req.params
-        error_responce["error"] ="ERROR: word not found"
+        error_responce["error"] ="ERROR: word not  found"
         res.send(error_responce)     
     }
     
@@ -37,13 +45,14 @@ app.get('/v1/word/:word', function (req, res) {
 
 
 // words enpoint
-app.get("/v1/senence/:words",(req,res)=>{
+app.get("/v1/words/:words",(req,res)=>{
     let isSentence = req.params.words
     let responce_json = {
-        "error":"",
-        "sentence":"",
         "sentence_ipa":"",
-        "ipa_words":[]
+        "ipa_words":[],
+        "sentence":"",
+        "error":""   ,
+        "version": API_VERSION
     }
 
     if(isSentence) {
@@ -75,6 +84,7 @@ app.get("/v1/senence/:words",(req,res)=>{
 
         res.send(JSON.stringify(responce_json))
     }else{
+        responce_json.error = "sentence not found"
         res.send(JSON.stringify(responce_json))
     }
 })

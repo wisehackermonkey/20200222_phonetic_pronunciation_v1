@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 
 #install app dependencies
 
-COPY package.js /usr/src/app/
+COPY package*.json ./
 
 RUN cd /usr/src/app/
 
@@ -18,9 +18,9 @@ RUN node --version
 
 
 
-#bundle app source code
+# #bundle app source code
 
-#COPY files
+# #COPY files
 
 COPY . /usr/src/app
 
