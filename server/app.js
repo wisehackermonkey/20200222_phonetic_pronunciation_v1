@@ -2,7 +2,7 @@ import express from 'express'
 //https://www.npmjs.com/package/text-to-ipa
 import TextToIPA from 'text-to-ipa'
 import { cleanup } from './lib/helpers'
-// import {cleanup} from "./lib/helpers"
+
 const app = express()
 const PORT = 3000
 console.log("Server Started: " + PORT)
