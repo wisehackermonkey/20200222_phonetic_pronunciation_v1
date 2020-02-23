@@ -15,3 +15,6 @@ run background
 
 RUN WITH DOCKER
 >docker run -p 8080:3000 -d  wisehackermonkey/ipa-translator-v1
+
+for runing on raspberry pi
+>docker run -p 8080:3000 -d  wisehackermonkey/ipa-translator-v1-arm

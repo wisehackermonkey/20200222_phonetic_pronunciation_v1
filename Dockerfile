@@ -1,3 +1,4 @@
+# for running on raspberry pi FROM  arm32v7/node:13-slim
 FROM node:slim
 
 RUN mkdir -p /usr/src/app
