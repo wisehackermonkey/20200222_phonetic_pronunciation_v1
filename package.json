@@ -19,7 +19,11 @@
   },
   "homepage": "https://github.com/wisehackermonkey/20200222_phonetic_pronunciation_v1#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "basic-tts": "^1.0.4",
+    "express": "^4.17.1",
+    "play-tts": "^1.0.7",
+    "text-to-ipa": "^1.0.0",
+    "text-to-speech-js": "^1.1.9"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
