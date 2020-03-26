@@ -1,5 +1,11 @@
 # 20200222_phonetic_pronunciation_v1
  a simple app that returns the wav for a words pronusation using IPA (International Phonetic Alphabet)
+ 
+-----------
+### go to 
+```
+http://192.168.1.73:8080/v1/words/1
+```
 
 ![](/screehshot_v1.jpg?raw=true "Optional Title")
 how to build the local npm repo
